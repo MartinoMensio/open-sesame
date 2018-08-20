@@ -11,14 +11,19 @@ VERSION = str(configuration["version"])
 DATA_DIR = configuration["data_directory"]
 EMBEDDINGS_FILE = configuration["embeddings_file"]
 DEBUG_MODE = configuration["debug_mode"]
+DATASET = configuration["dataset"]
+if DATASET == 'fn':
+    FULL_DATASET = DATASET + VERSION
+else:
+    FULL_DATASET = DATASET
 
 # The following variables are held constant throughout the repository. Change at your own peril!
 
-PARSER_DATA_DIR = DATA_DIR + "neural/fn" + VERSION + "/"
-TRAIN_FTE = PARSER_DATA_DIR + "fn" + VERSION + ".fulltext.train.syntaxnet.conll"
-TRAIN_EXEMPLAR = PARSER_DATA_DIR + "fn" + VERSION + ".exemplar.train.syntaxnet.conll"
-DEV_CONLL = PARSER_DATA_DIR + "fn" + VERSION + ".dev.syntaxnet.conll"
-TEST_CONLL = PARSER_DATA_DIR + "fn" + VERSION + ".test.syntaxnet.conll"
+PARSER_DATA_DIR = DATA_DIR + "neural/" + FULL_DATASET + "/"
+TRAIN_FTE = PARSER_DATA_DIR + FULL_DATASET + ".fulltext.train.syntaxnet.conll"
+TRAIN_EXEMPLAR = PARSER_DATA_DIR  + FULL_DATASET + ".exemplar.train.syntaxnet.conll"
+DEV_CONLL = PARSER_DATA_DIR + FULL_DATASET + ".dev.syntaxnet.conll"
+TEST_CONLL = PARSER_DATA_DIR + FULL_DATASET + ".test.syntaxnet.conll"
 
 FN_DATA_DIR = DATA_DIR + "fndata-" + VERSION + "/"
 LU_INDEX = FN_DATA_DIR + "luIndex.xml"
@@ -66,9 +71,9 @@ DEV_FILES = [
 
 PTB_DATA_DIR = DATA_DIR + "ptb/"
 
-TRAIN_FTE_CONSTITS = "fn" + VERSION + ".fulltext.train.rnng.brackets"
-DEV_CONSTITS = "fn" + VERSION + ".dev.rnng.brackets"
-TEST_CONSTITS = "fn" + VERSION + ".test.rnng.brackets"
+TRAIN_FTE_CONSTITS = FULL_DATASET + ".fulltext.train.rnng.brackets"
+DEV_CONSTITS = FULL_DATASET + ".dev.rnng.brackets"
+TEST_CONSTITS = FULL_DATASET + ".test.rnng.brackets"
 
 CONSTIT_MAP = {
         TRAIN_FTE : TRAIN_FTE_CONSTITS,
